@@ -17,7 +17,7 @@ def create_caption_and_mask(start_token, max_length):
     return caption_template, mask_template
 
 @torch.no_grad()
-def predict(image_path):
+def predict(image):
   model = torch.hub.load('saahiluppal/catr', 'v3', pretrained=True)
   tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
   start_token = tokenizer.convert_tokens_to_ids(tokenizer._cls_token)
@@ -26,7 +26,6 @@ def predict(image_path):
   end_token = tokenizer.convert_tokens_to_ids(tokenizer._sep_token)
   caption, cap_mask = create_caption_and_mask(start_token, 128)
 
-  image = Image.open(image_path)
   image = coco.val_transform(image)
   image = image.unsqueeze(0)
 
