@@ -24,7 +24,7 @@ def save_uploaded_file(uploaded_file):
 
         return 0
 
-uploaded_file = st.file_uploader("Upload Image")
+uploaded_file = st.file_uploader("Upload Image", type=['jpg', 'jpeg', 'png'])
 if uploaded_file is not None:
     if save_uploaded_file(uploaded_file):
         # display the file
