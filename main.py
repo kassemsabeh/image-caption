@@ -31,6 +31,6 @@ if uploaded_file:
     display_image = display_image.resize((500,300))
     st.image(display_image)
     prediction = predict(display_image)
-    print(prediction)
-    os.remove('uploaded/'+uploaded_file.name)
+#     print(prediction)
+#     os.remove('uploaded/'+uploaded_file.name)
     st.text(f'Predictions: {prediction.capitalize()}')
