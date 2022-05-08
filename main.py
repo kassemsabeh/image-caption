@@ -25,13 +25,12 @@ def save_uploaded_file(uploaded_file):
         return 0
 
 uploaded_file = st.file_uploader("Upload Image", type=['jpg', 'jpeg', 'png'])
-if uploaded_file is not None:
-    if save_uploaded_file(uploaded_file):
-        # display the file
-        display_image = Image.open(uploaded_file)
-        display_image = display_image.resize((500,300))
-        st.image(display_image)
-        prediction = predict(os.path.join('uploaded',uploaded_file.name))
-        print(prediction)
-        os.remove('uploaded/'+uploaded_file.name)
-        st.text(f'Predictions: {prediction.capitalize()}')
+if uploaded_file:
+    # display the file
+    display_image = Image.open(uploaded_file)
+    display_image = display_image.resize((500,300))
+    st.image(display_image)
+    prediction = predict(os.path.join('uploaded',uploaded_file.name))
+    print(prediction)
+    os.remove('uploaded/'+uploaded_file.name)
+    st.text(f'Predictions: {prediction.capitalize()}')
