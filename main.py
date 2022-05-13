@@ -32,17 +32,17 @@ if uploaded_file:
     display_image = Image.open(uploaded_file)
     display_image = display_image.resize((500,300))
     st.image(display_image)
-    prediction = predict(display_image)
     pred_button = st.button('Generate Caption')
-    audio_button = st.button('Play')
+    
     if pred_button:
+        prediction = predict(display_image)
         st.text(f'Predictions: {prediction.capitalize()}')
-        
-    if audio_button:
         tts = gTTS(text=prediction)
         tts.save('audio.mp3')
         audio_file = open('audio.mp3', 'rb')
         audio_bytes = audio_file.read()
         st.audio(audio_bytes)
+        
+       
 
     
